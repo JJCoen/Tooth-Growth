@@ -1,0 +1,47 @@
+---
+title: "teeth"
+type: inverse
+author: "JJCoen"
+date: "`r format(Sys.Date(), '%A, %B %d, %Y') `"
+output: 
+  workflowr::wflow_html:
+    toc: true
+    toc_depth: 3
+    toc_float: TRUE
+    code_folding: hide
+    css: styles.css
+# editor_options:
+#   chunk_output_type: console
+---
+
+## Introduction
+
+```{r import-teeth}
+teeth <- read.csv("data/teeth.csv", row.names = 1)
+head(teeth)
+```
+
+
+```{r boxplots}
+boxplot(len ~ dose, data = teeth)
+boxplot(len ~ supp, data = teeth)
+boxplot(len ~ dose + supp, data = teeth)
+```
+
+# Permutation Test
+* Compares the observed mean difference between categories with  
+mean difference when categories are chosen randomly
+* If the observed difference (alternative hypothesis) is an outlier wrt distribution of random categories (null hypotheisi) then the alternative hypothesis is significant.
+
+```{r permute}
+# Observed difference in teeth length due to supplement method
+mean(teeth$len[teeth$supp == "OJ"]) - mean(teeth$len[teeth$supp == "VC"])
+# Permute the observations
+supp_perm <- sample(teeth$supp)
+# Calculate mean difference in permuted data
+mean(teeth$len[supp_perm == "OJ"]) - mean(teeth$len[supp_perm == "VC"])
+```
+
+
+
+
