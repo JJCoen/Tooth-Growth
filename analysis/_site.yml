@@ -1,0 +1,23 @@
+name: tooth-growth
+output_dir: ../docs
+navbar:
+  title: tooth-growth
+  type: inverse
+  left:
+  - text: Home
+    href: index.html
+  - text: About
+    href: about.html
+  - text: License
+    href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/JJCoen/Tooth-Growth
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+    highlight: textmate
+    code_folding: hide
